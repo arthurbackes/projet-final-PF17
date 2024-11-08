@@ -1,0 +1,1 @@
+Feature: Genre mettre un timer de 3 min et le gars doit répondre juste à un max de questions

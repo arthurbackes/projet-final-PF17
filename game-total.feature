@@ -1,0 +1,1 @@
+Feature: En gros rajoute un point à chaque fois que un gars a une réponse juste
