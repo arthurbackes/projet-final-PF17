@@ -31,6 +31,13 @@ app.post("/signup", async (req, res) => {
     password: req.body.password
   }
 
+  const existingUser = await collection.findOne({name: data.name});
+
+  if(existingUser) {
+    res.send("User existe déjà bouffon")
+  }
+
+
   const userdata = await collection.insertMany(data);
   console.log(userdata);
 })
