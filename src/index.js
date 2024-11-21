@@ -35,11 +35,15 @@ app.post("/signup", async (req, res) => {
 
   if(existingUser) {
     res.send("User existe déjà bouffon")
+  } else {
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+
+    data.password = hashedPassword;
+
+    const userdata = await collection.insertMany(data);
+    console.log(userdata);
   }
-
-
-  const userdata = await collection.insertMany(data);
-  console.log(userdata);
 })
 
 
