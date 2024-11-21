@@ -16,6 +16,11 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 
+
+
+
+
+
 app.get("/", (req, res) => {
   res.render("login");
 })
@@ -24,6 +29,17 @@ app.get("/signup", (req, res) => {
   res.render("signup")
 })
 
+app.get("/home", (req, res) => {
+  res.render("home")
+})
+
+
+
+
+
+
+
+// Sign up
 
 app.post("/signup", async (req, res) => {
   const data = {
@@ -43,9 +59,12 @@ app.post("/signup", async (req, res) => {
 
     const userdata = await collection.insertMany(data);
     console.log(userdata);
-    res.render("home")
+    res.redirect("/home")
   }
 })
+
+
+// Login
 
 
 app.post("/login", async (req, res) => {
@@ -56,7 +75,7 @@ app.post("/login", async (req, res) => {
     }
     const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
     if (isPasswordMatch) {
-      res.render("home")
+      res.redirect("home")
     } else {
       req.render("login");
     }
@@ -64,6 +83,24 @@ app.post("/login", async (req, res) => {
     res.render("login")
   }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
